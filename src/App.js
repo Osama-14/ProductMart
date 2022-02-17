@@ -1,3 +1,4 @@
+import './App.css';
 import { Route,BrowserRouter, Routes } from 'react-router-dom';
 import Homepage from './pages/Homepage';
 import Cartpage from './pages/Cartpage';
@@ -5,7 +6,7 @@ import ProductInfo from './pages/ProductInfo';
 import Register from './pages/Register';
 import Login from './pages/Login';
 
-import './App.css';
+import './stylesheets/layout.css'
 
 function App() {
   return (
