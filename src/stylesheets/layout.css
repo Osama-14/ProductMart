@@ -1,3 +1,10 @@
 .navbar{
     background-color: #003F5C !important;
 }
+.navbar-brand{
+    color: white !important;
+    font-weight: bold !important;
+}
+.navbar-link{
+     color: #fff !important;
+}
