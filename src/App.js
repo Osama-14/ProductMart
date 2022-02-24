@@ -7,6 +7,8 @@ import Register from './pages/Register';
 import Login from './pages/Login';
 
 import './stylesheets/layout.css'
+import './stylesheets/products.css'
+
 
 function App() {
   return (
