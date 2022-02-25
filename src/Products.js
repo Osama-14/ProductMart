@@ -1,4 +1,4 @@
-export const fireProducts = [
+export const FireProducts = [
   {
     price: 234,
     discription: " Apple IOS phone",
