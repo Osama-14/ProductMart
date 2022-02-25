@@ -1,4 +1,4 @@
-export const FireProducts = [
+export const FireProduct = [
   {
     price: 120000,
     discription: " 8GB RAM , 256GB STORAGE 64 PIXELS CAMERA",
