@@ -29,3 +29,16 @@
 .content{
     padding-top: 80px;
 }
+
+button{
+    background-color: #003F5C;
+    box-shadow: none;
+    border: 1px solid rgb(141, 140, 140);
+    color: white;
+    padding: 5px;
+}
+
+button:hover{
+    background-color: tomato;
+    
+}

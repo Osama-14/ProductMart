@@ -3,14 +3,11 @@ import Layout from "../components/Layout";
 import { collection, addDoc, getDocs } from "firebase/firestore";
 import fireDB from "../fireConfig";
 import { FireProducts } from "../Products";
-function Homepage({ ...props }) {
-  const { imageURL } = FireProducts;
-
+function Homepage() {
   const [products, setProducts] = useState(FireProducts);
 
   useEffect(() => {
-
-      getData();
+    getData();
   }, []);
 
   async function getData() {
@@ -47,13 +44,26 @@ function Homepage({ ...props }) {
 
             return (
               <div key={ind} className="col-md-4">
-                <div className="m-2 p-1">
-                  <p>{product.name}</p>
-                  <img
-                    src={product.imageURL}
-                    alt=""
-                    className="product-img"
-                  />
+                <div className="m-2 p-1 product position-relative">
+                  <div className="product-content">
+                    <p>{product.name}</p>
+                    <div className="text-center">
+                      <img
+                        src={product.imageURL}
+                        alt=""
+                        className="product-img"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="product-actions">
+                    <h2>{product.price} Rs/</h2>
+                    <div className="d-flex">
+                      <button className="mx-2">Add To Cart</button>
+                      <button>View</button>
+
+                    </div>
+                  </div>
                 </div>
               </div>
             );
