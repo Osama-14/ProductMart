@@ -6,7 +6,7 @@ import { FireProduct } from "../Products";
 import { useNavigate } from "react-router-dom";
 
 function Homepage() {
-  const [product, setProduct] = useState(FireProduct);
+  const [products, setProducts] = useState([]);
   const navigate = useNavigate();
 
 
@@ -18,7 +18,7 @@ function Homepage() {
     try {
       const users = await getDocs(collection(fireDB, "products"));
 
-      const productArray = [];
+      const productsArray = [];
 
       users.forEach((doc) => {
         const obj = {
@@ -26,21 +26,29 @@ function Homepage() {
           ...doc.data(),
         };
 
-        productArray.push(obj);
+        productsArray.push(obj);
       });
 
-      setProduct(productArray);
+      console.log(productsArray);
+
+      setProducts(productsArray);
+
     } catch (error) {
       console.log(error);
     }
   }
+ 
+
+   
+
+  
 
 
   return (
     <Layout>
       <div className="container">
         <div className="row">
-          {product.map((product, ind) => {
+          {products.map((product, ind) => {
             {
               console.log("froooooooo", product.name);
             }
@@ -62,7 +70,7 @@ function Homepage() {
                   <div className="product-actions">
                     <h2>{product.price} Rs/</h2>
                     <div className="d-flex">
-                      <button className="mx-2">Add To Cart</button>
+                      <button className="mx-2" onClick={()=> getData()}>Add To Cart</button>
                       <button onClick={ () =>{
                         navigate('/productinfo/$(product.id)')
                       }}>View</button>
