@@ -72,7 +72,7 @@ function Homepage() {
                     <div className="d-flex">
                       <button className="mx-2" onClick={()=> getData()}>Add To Cart</button>
                       <button onClick={ () =>{
-                        navigate('/productinfo/$(product.id)')
+                        navigate(`/productinfo/${product.id}`)
                       }}>View</button>
 
                     </div>

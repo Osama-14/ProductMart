@@ -14,17 +14,36 @@ function ProductInfo() {
 
   async function getData() {
     try {
-      const productTemp = await getDoc(
-        doc(fireDB, "products", params.productid)
-      );
+      const productTemp = await getDoc(doc(fireDB, "products", params.productid));
 
-      setProduct(productTemp);
+      setProduct(productTemp.data());
     } catch (error) {
       console.log(error);
     }
   }
 
-  return <Layout>ProductInfo</Layout>;
+  return <Layout>
+    <div className="container">
+    <div className="row justify-content-center">
+      <div className="col-md-8">
+
+      {product && (<div>
+      <p> <b>{product.name}</b></p>
+      <img src={product.imageURL} alt="" className="productinfo-img" />
+      <hr />
+      <p>{product.discription}</p>
+      <div className="d-flex justify-content-end my-3">
+        <button>Add To Cart</button>
+
+      </div>
+    </div>)}
+
+      </div>
+    </div>
+    </div>
+
+    
+  </Layout>;
 }
 
 export default ProductInfo;
