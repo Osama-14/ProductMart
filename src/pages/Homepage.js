@@ -1,13 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useLayoutEffect } from "react";
 import Layout from "../components/Layout";
 import { collection, addDoc, getDocs } from "firebase/firestore";
 import fireDB from "../fireConfig";
 import { FireProduct } from "../Products";
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { type } from "@testing-library/user-event/dist/type";
 
 function Homepage() {
   const [products, setProducts] = useState([]);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const {cartItems} = useSelector(state =>state.cartReducer)
 
 
   useEffect(() => {
@@ -36,6 +40,17 @@ function Homepage() {
     } catch (error) {
       console.log(error);
     }
+  }
+
+  useEffect( () => {
+    localStorage.setItem('cartItems', JSON.stringify(cartItems))
+
+  },[cartItems])
+
+
+  const addtocart = (product) => {
+    dispatch({type : "ADD_TO_CART", payload: product})
+
   }
  
 
@@ -70,7 +85,7 @@ function Homepage() {
                   <div className="product-actions">
                     <h2>{product.price} Rs/</h2>
                     <div className="d-flex">
-                      <button className="mx-2" onClick={()=> getData()}>Add To Cart</button>
+                      <button className="mx-2" onClick={()=> addtocart(product)}>Add To Cart</button>
                       <button onClick={ () =>{
                         navigate(`/productinfo/${product.id}`)
                       }}>View</button>
