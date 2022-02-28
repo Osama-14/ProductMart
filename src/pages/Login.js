@@ -1,14 +1,42 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import ecommercegif from "../images/ecommerce.gif";
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { toast } from "react-toastify";
+import Loader from '../components/Loader'
+
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [cPassword, setCpassword] = useState("");
+  const [loader, setLoader] = useState(false);
+  const auth = getAuth();
+
+  const login = async() => {
+
+    try{
+      setLoader(true)
+     const result = await signInWithEmailAndPassword(auth, email, password)
+     toast.success("Login Successful")
+      setLoader(false)
+      localStorage.setItem('currentUser', JSON.stringify(result))
+        window.location.href='/'
+    }catch(error){
+      console.log(error);
+      toast.error("Login Failed")
+
+      setLoader(false)
+
+    }
+
+    
+  }
+
 
   return (
     <div className="login-parent">
+       {loader && ( <Loader /> )}
       <div className="row justify-content-center">
 
       <div className="col-md-4 z1">
@@ -30,13 +58,13 @@ function Login() {
               type="password"
               className="form-control"
               placeholder="Password"
-              value={email}
+              value={password}
               onChange={(e) => {
                 setPassword(e.target.value);
               }}
             />
 
-            <button className="my-3">Login Now</button>
+            <button className="my-3" onClick={login}>Login Now</button>
           </div>
 
           <hr />

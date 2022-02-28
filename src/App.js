@@ -1,29 +1,31 @@
 import './App.css';
-import { Route,BrowserRouter, Routes } from 'react-router-dom';
+import { Route,BrowserRouter, Routes, Navigate } from 'react-router-dom';
 import Homepage from './pages/Homepage';
 import Cartpage from './pages/Cartpage';
 import ProductInfo from './pages/ProductInfo';
 import Register from './pages/Register';
 import Login from './pages/Login';
+import { ToastContainer } from 'react-toastify';
 
 import './stylesheets/layout.css'
 import './stylesheets/products.css'
 import './stylesheets/authentication.css'
+import 'react-toastify/dist/ReactToastify.css';
 
 
 
 function App() {
   return (
     <div className="App">
+      <ToastContainer />
      
      <BrowserRouter>
      <Routes>
-    <Route path='/' exact element={ <Homepage />} />
+    <Route path='/' exact element={<ProtectedRoutes> <Homepage /></ProtectedRoutes>} />
+    <Route path='/productinfo/:productid' exact element={<ProtectedRoutes> <ProductInfo /></ProtectedRoutes>} />
+    <Route path='/cart' exact element={<ProtectedRoutes> <Cartpage /></ProtectedRoutes>} />
     <Route path='/login' exact element={ <Login />} />
     <Route path='/register' exact element={ <Register />} />
-    <Route path='/productinfo/:productid' exact element={ <ProductInfo />} />
-    <Route path='/cart' exact element={ <Cartpage />} />
-
 
      </Routes>
      </BrowserRouter>
@@ -34,3 +36,13 @@ function App() {
 }
 
 export default App;
+
+
+export const ProtectedRoutes = ({children}) => {
+  if (localStorage.getItem('currentUser')){
+    return children
+  }
+  else{
+    return <Navigate to='/login' />
+  } 
+}
