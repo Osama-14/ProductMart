@@ -33,3 +33,9 @@
 .productinfo-img{
     height: 70vh;
 }
+
+.total-amount{
+    padding: 10px;
+    font-weight: bold !important;
+
+}

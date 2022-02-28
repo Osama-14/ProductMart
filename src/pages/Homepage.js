@@ -9,6 +9,7 @@ import { type } from "@testing-library/user-event/dist/type";
 
 function Homepage() {
   const [products, setProducts] = useState([]);
+  const [loader, setLoader] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const {cartItems} = useSelector(state =>state.cartReducer)
@@ -19,7 +20,10 @@ function Homepage() {
   }, []);
 
   async function getData() {
+    
     try {
+    setLoader(true);
+
       const users = await getDocs(collection(fireDB, "products"));
 
       const productsArray = [];
@@ -31,6 +35,7 @@ function Homepage() {
         };
 
         productsArray.push(obj);
+        setLoader(false);
       });
 
       console.log(productsArray);
@@ -39,6 +44,8 @@ function Homepage() {
 
     } catch (error) {
       console.log(error);
+      setLoader(false);
+
     }
   }
 
@@ -60,7 +67,7 @@ function Homepage() {
 
 
   return (
-    <Layout>
+    <Layout loader = {loader}>
       <div className="container">
         <div className="row">
           {products.map((product, ind) => {

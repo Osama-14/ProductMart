@@ -8,6 +8,8 @@ import Login from './pages/Login';
 
 import './stylesheets/layout.css'
 import './stylesheets/products.css'
+import './stylesheets/authentication.css'
+
 
 
 function App() {
