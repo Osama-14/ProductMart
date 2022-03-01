@@ -12,17 +12,17 @@ function Homepage() {
   const [loader, setLoader] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const {cartItems} = useSelector(state =>state.cartReducer)
-
+  const { cartItems } = useSelector((state) => state.cartReducer);
+  const [searchKey, setSearchKey] = useState("");
+  const [filterType, setFilterType] = useState("");
 
   useEffect(() => {
     getData();
   }, []);
 
   async function getData() {
-    
     try {
-    setLoader(true);
+      setLoader(true);
 
       const users = await getDocs(collection(fireDB, "products"));
 
@@ -41,68 +41,106 @@ function Homepage() {
       console.log(productsArray);
 
       setProducts(productsArray);
-
     } catch (error) {
       console.log(error);
       setLoader(false);
-
     }
   }
 
-  useEffect( () => {
-    localStorage.setItem('cartItems', JSON.stringify(cartItems))
-
-  },[cartItems])
-
+  useEffect(() => {
+    localStorage.setItem("cartItems", JSON.stringify(cartItems));
+  }, [cartItems]);
 
   const addtocart = (product) => {
-    dispatch({type : "ADD_TO_CART", payload: product})
+    dispatch({ type: "ADD_TO_CART", payload: product });
+  };
 
-  }
- 
-
-   
-
-  
-
+  console.log(products);
 
   return (
-    <Layout loader = {loader}>
+    <Layout loader={loader}>
       <div className="container">
+        <div className="d-flex w-50">
+          <input
+            type="text"
+            className="form-control"
+            placeholder="Search"
+            value={searchKey}
+            onChange={(e) => {
+              setSearchKey(e.target.value);
+            }}
+          />
+          <select
+            className="form-control"
+            value={filterType}
+            onChange={(e) => {
+              setFilterType(e.target.value);
+            }}
+          >
+            <option value="">All</option>
+            <option value="smartphone">Mobiles</option>
+            <option value="headphones">Headphones</option>
+            <option value="watches">Watches</option>
+          </select>
+        </div>
         <div className="row">
-          {products.map((product, ind) => {
-            {
-              console.log("froooooooo", product.name);
-            }
+          {products &&
+            products.length > 0 &&
+            products
+              .filter(
+                (obj) =>
+                  obj.name &&
+                  obj.name !== undefined &&
+                  obj.name
+                    .toLocaleLowerCase()
+                    .includes(searchKey.toLocaleLowerCase())
+              )
+              .filter(
+                (obj) =>
+                  obj.category &&
+                  obj.category !== undefined &&
+                  obj.category
+                    .toLocaleLowerCase()
+                    .includes(filterType.toLocaleLowerCase())
+              )
 
-            return (
-              <div key={ind} className="col-md-4">
-                <div className="m-2 p-1 product position-relative">
-                  <div className="product-content">
-                    <p>{product.name}</p>
-                    <div className="text-center">
-                      <img
-                        src={product.imageURL}
-                        alt=""
-                        className="product-img"
-                      />
+              .map((product, ind) => {
+                return (
+                  <div key={ind} className="col-md-4">
+                    <div className="m-2 p-1 product position-relative">
+                      <div className="product-content">
+                        <p>{product.name}</p>
+                        <div className="text-center">
+                          <img
+                            src={product.imageURL}
+                            alt=""
+                            className="product-img"
+                          />
+                        </div>
+                      </div>
+
+                      <div className="product-actions">
+                        <h2>{product.price} Rs/</h2>
+                        <div className="d-flex">
+                          <button
+                            className="mx-2"
+                            onClick={() => addtocart(product)}
+                          >
+                            Add To Cart
+                          </button>
+                          <button
+                            onClick={() => {
+                              navigate(`/productinfo/${product.id}`);
+                            }}
+                          >
+                            View
+                          </button>
+                        </div>
+                      </div>
                     </div>
                   </div>
-
-                  <div className="product-actions">
-                    <h2>{product.price} Rs/</h2>
-                    <div className="d-flex">
-                      <button className="mx-2" onClick={()=> addtocart(product)}>Add To Cart</button>
-                      <button onClick={ () =>{
-                        navigate(`/productinfo/${product.id}`)
-                      }}>View</button>
-
-                    </div>
-                  </div>
-                </div>
-              </div>
-            );
-          })}
+                );
+              })}
         </div>
       </div>
     </Layout>
