@@ -7,7 +7,7 @@
   box-shadow: none !important;
 }
 
-input {
+input, textarea {
   margin: 15px !important;
 }
 
