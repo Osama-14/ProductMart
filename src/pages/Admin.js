@@ -1,10 +1,11 @@
 import React, { useState,useEffect } from 'react'
-import { collection, addDoc, getDocs } from "firebase/firestore";
+import { collection, getDocs,setDoc, doc } from "firebase/firestore";
 import { Modal } from "react-bootstrap";
-
 import fireDB from "../fireConfig";
 import Layout from '../components/Layout';
 import { FaEdit, FaTrash } from 'react-icons/fa';
+import { toast } from "react-toastify";
+
 
 function Admin() {
     const [products, setProducts] = useState([]);
@@ -54,6 +55,26 @@ function Admin() {
       const editHandler = (item) =>{
           setProduct(item);
           setShow(true)
+      }
+
+      const updateProduct = async () => {
+
+
+        try {
+            setLoader(true)
+            await setDoc(doc(fireDB, "products", product.id), product)
+            getData()
+            handleClose()
+            toast.success("Products updated succeed");
+
+        } catch (error) {
+            toast.error("failed to update");
+            setLoader(false)
+
+
+
+        }
+
       }
 
   return (
@@ -138,7 +159,7 @@ function Admin() {
         </Modal.Body>
         <Modal.Footer>
           <button>Close</button>
-          <button>Save</button>
+          <button onClick={updateProduct}>Save</button>
         </Modal.Footer>
       </Modal>
     </Layout>
