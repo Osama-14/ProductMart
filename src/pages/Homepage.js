@@ -60,7 +60,7 @@ function Homepage() {
   return (
     <Layout loader={loader}>
       <div className="container">
-        <div className="d-flex w-50">
+        <div className="d-flex w-50 align-items-center">
           <input
             type="text"
             className="form-control"

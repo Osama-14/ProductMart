@@ -3,8 +3,7 @@ import { Link } from "react-router-dom";
 import ecommercegif from "../images/ecommerce.gif";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { toast } from "react-toastify";
-import Loader from '../components/Loader'
-
+import Loader from "../components/Loader";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -13,33 +12,27 @@ function Login() {
   const [loader, setLoader] = useState(false);
   const auth = getAuth();
 
-  const login = async() => {
-
-    try{
-      setLoader(true)
-     const result = await signInWithEmailAndPassword(auth, email, password)
-     toast.success("Login Successful")
-      setLoader(false)
-      localStorage.setItem('currentUser', JSON.stringify(result))
-        window.location.href='/'
-    }catch(error){
+  const login = async () => {
+    try {
+      setLoader(true);
+      const result = await signInWithEmailAndPassword(auth, email, password);
+      toast.success("Login Successful");
+      setLoader(false);
+      localStorage.setItem("currentUser", JSON.stringify(result));
+      window.location.href = "/";
+    } catch (error) {
       console.log(error);
-      toast.error("Login Failed")
+      toast.error("Login Failed");
 
-      setLoader(false)
-
+      setLoader(false);
     }
-
-    
-  }
-
+  };
 
   return (
     <div className="login-parent">
-       {loader && ( <Loader /> )}
+      {loader && <Loader />}
       <div className="row justify-content-center">
-
-      <div className="col-md-4 z1">
+        <div className="col-md-4 z1">
           <div className="login-form">
             <h2>Login</h2>
             <hr />
@@ -64,7 +57,9 @@ function Login() {
               }}
             />
 
-            <button className="my-3" onClick={login}>Login Now</button>
+            <button className="my-3" onClick={login}>
+              Login Now
+            </button>
           </div>
 
           <hr />
@@ -73,10 +68,15 @@ function Login() {
         </div>
 
         <div className="col-md-5">
- 
-          <img src={ecommercegif} width={600} height={500} />
+          {/* <img src={ecommercegif} width={600} height={500} /> */}
+          <lottie-player
+            src="https://assets3.lottiefiles.com/packages/lf20_6wutsrox.json"
+            background="transparent"
+            speed="1"
+            loop
+            autoplay
+          ></lottie-player>
         </div>
-
       </div>
       <div className="login-bottom"></div>
     </div>
