@@ -10,6 +10,7 @@ import { toast } from "react-toastify";
 function Admin() {
     const [products, setProducts] = useState([]);
     const [loader, setLoader] = useState(false);
+    const [add, setAdd] = useState(false)
     const [product, setProduct] = useState({
         name: "",
         price: 0,
@@ -77,9 +78,17 @@ function Admin() {
 
       }
 
+      const addHandler = () => {
+        setAdd(true)
+        handleShow();
+      }
+
   return (
     <Layout loader={loader}>
+        <div className='d-flex justify-content-between'>
         <h3>Admin Page</h3>
+        <button onClick={addHandler} >Add Product</button>
+        </div>
               <table className="table">
         <thead>
           <tr>
@@ -113,7 +122,7 @@ function Admin() {
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Your Address</Modal.Title>
+          <Modal.Title> {add===true ? 'Add product' : 'Edit product'} </Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <div className="register-form">
