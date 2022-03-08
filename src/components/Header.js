@@ -2,6 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import {FaBars, FaCartPlus} from 'react-icons/fa'
 import { useSelector } from "react-redux";
+import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
+
 
 
 function Header() {
@@ -40,7 +42,7 @@ function Header() {
               </li>
               <li className="nav-item">
                 <Link className="nav-link" to="/orders">
-                  orders
+                 <AddShoppingCartIcon /> 
                 </Link>
               </li>
               <li className="nav-item">

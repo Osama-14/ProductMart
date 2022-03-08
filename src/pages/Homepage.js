@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { type } from "@testing-library/user-event/dist/type";
 
+
 function Homepage() {
   const [products, setProducts] = useState([]);
   const [loader, setLoader] = useState(false);
@@ -123,7 +124,7 @@ function Homepage() {
                         <h2>{product.price} Rs/</h2>
                         <div className="d-flex">
                           <button
-                            className="mx-2"
+                            className="mx-2 btn1"
                             onClick={() => addtocart(product)}
                           >
                             Add To Cart
