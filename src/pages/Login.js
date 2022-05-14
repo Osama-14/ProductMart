@@ -70,7 +70,7 @@ function Login() {
         <div className="col-md-5">
           {/* <img src={ecommercegif} width={600} height={500} /> */}
           <lottie-player
-            src="https://assets3.lottiefiles.com/packages/lf20_6wutsrox.json"
+            src="https://assets2.lottiefiles.com/packages/lf20_9rfdfjek.json"
             background="transparent"
             speed="1"
             loop

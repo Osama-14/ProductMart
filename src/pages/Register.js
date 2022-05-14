@@ -39,7 +39,7 @@ function Register() {
       <div className="row justify-content-center">
         <div className="col-md-5">
           <lottie-player
-            src="https://assets9.lottiefiles.com/packages/lf20_x5jglqn9.json"
+            src="https://assets2.lottiefiles.com/packages/lf20_zzauuadl.json"
             background="transparent"
             speed="1"
             loop

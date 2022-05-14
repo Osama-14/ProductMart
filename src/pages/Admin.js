@@ -87,7 +87,7 @@ function Admin() {
     <Layout loader={loader}>
         <div className='d-flex justify-content-between'>
         <h3>Admin Page</h3>
-        <button onClick={addHandler} >Add Product</button>
+        <button onClick={addHandler} >Add New Courses</button>
         </div>
               <table className="table">
         <thead>
@@ -95,7 +95,7 @@ function Admin() {
             <th>Image</th>
             <th>Name</th>
             <th>Category</th>
-            <th>Price</th>
+            <th>Fees</th>
             <th>Actions</th>
           </tr>
         </thead>

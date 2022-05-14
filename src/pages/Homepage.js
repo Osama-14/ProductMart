@@ -79,9 +79,9 @@ function Homepage() {
             }}
           >
             <option value="">All</option>
-            <option value="smartphone">Mobiles</option>
-            <option value="headphones">Headphones</option>
-            <option value="watches">Watches</option>
+            <option value="webcourse">Web and mobile development</option>
+            <option value="aicourse">Artifical Intelligence</option>
+            <option value="graphiccourse">Graphic Designing</option>
           </select>
         </div>
         <div className="row">
