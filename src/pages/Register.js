@@ -33,7 +33,10 @@ function Register() {
   };
 
   return (
+
+    
     <div className="register-parent">
+
       {loader && <Loader />}
       <div className="register-top"></div>
       <div className="row justify-content-center">

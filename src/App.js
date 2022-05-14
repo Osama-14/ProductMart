@@ -7,7 +7,6 @@ import Register from "./pages/Register";
 import Login from "./pages/Login";
 import { ToastContainer } from "react-toastify";
 import Orders from "./pages/Orders";
-
 import "./stylesheets/layout.css";
 import "./stylesheets/products.css";
 import "./stylesheets/authentication.css";

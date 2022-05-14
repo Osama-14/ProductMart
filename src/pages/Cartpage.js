@@ -60,7 +60,7 @@ function Cartpage() {
       setLoader(true)
       const result = await addDoc(collection(fireDB, "Orders"), orderInfo )
       setLoader(false)
-      toast.success("Your Order Have Been Placed Successfully :)")
+      toast.success("You Have Been Enrolled this opportunity:)")
       handleClose()
     } catch (error){
       setLoader(false)
@@ -77,7 +77,7 @@ function Cartpage() {
         <thead>
           <tr>
             <th>Image</th>
-            <th>Name</th>
+            <th>Courses</th>
             <th>Price</th>
             <th>Actions</th>
           </tr>
@@ -93,7 +93,7 @@ function Cartpage() {
                 <td>{item.name}</td>
                 <td>{item.price}</td>
                 <td>
-                  <FaTrash onClick={() => deleteFromCart(item)} />
+                  <FaTrash onClick={() => deleteFromCart(item)}  style={{color:"#af3131"}}/>
                 </td>
               </tr>
             );
@@ -101,11 +101,11 @@ function Cartpage() {
         </tbody>
       </table>
       <div className="d-flex justify-content-end">
-        <h4 className="total-amount"> Total Amount= {totalAmount} RS/</h4>
+        <h4 className="total-amount"> Fees= {totalAmount} /</h4>
       </div>
 
       <div className="d-flex justify-content-end mt-3">
-        <button onClick={handleShow}>Place Your Order</button>
+        <button onClick={handleShow}>Enroll Course Now !</button>
       </div>
 
       <Modal show={show} onHide={handleClose}>
@@ -159,7 +159,7 @@ function Cartpage() {
         </Modal.Body>
         <Modal.Footer>
           <button onClick={handleClose}>Close</button>
-          <button onClick={placeOrder}>Place Your Order</button>
+          <button onClick={placeOrder}>Enroll Course !</button>
         </Modal.Footer>
       </Modal>
     </Layout>

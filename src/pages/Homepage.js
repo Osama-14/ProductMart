@@ -6,6 +6,7 @@ import { FireProduct } from "../Products";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { type } from "@testing-library/user-event/dist/type";
+import { Carousel } from "react-bootstrap";
 
 
 function Homepage() {
@@ -60,6 +61,9 @@ function Homepage() {
 
   return (
     <Layout loader={loader}>
+
+
+
       <div className="container">
         <div className="d-flex w-50 align-items-center">
           <input
@@ -84,6 +88,45 @@ function Homepage() {
             <option value="graphiccourse">Graphic Designing</option>
           </select>
         </div>
+
+
+        <Carousel>
+  <Carousel.Item interval={1000}>
+    <img
+      className="d-block w-100"
+      src="https://hassanhaidry.github.io/Sylani%20Welfate%20Trust%203rd%20assi_files/slider2.png"
+      alt="First slide"
+    />
+    <Carousel.Caption>
+    </Carousel.Caption>
+  </Carousel.Item>
+  <Carousel.Item interval={500}>
+    <img
+      className="d-block w-100"
+      src="https://en.dailypakistan.com.pk/digital_images/extra-large/2020-04-28/ubl-partners-with-saylani-trust-for-nation-wide-ration-distribution-project-1588074267-6155.jpg"
+      alt="Second slide"
+    />
+    <Carousel.Caption>
+
+    </Carousel.Caption>
+  </Carousel.Item>
+  <Carousel.Item>
+    <img
+      className="d-block w-100"
+      src="https://i.ytimg.com/vi/bK5mUs_jjM8/maxresdefault.jpg"
+      alt="Third slide"
+    />
+    <Carousel.Caption>
+
+    </Carousel.Caption>
+  </Carousel.Item>
+</Carousel>
+
+
+
+
+
+
         <div className="row">
           {products &&
             products.length > 0 &&
@@ -121,13 +164,13 @@ function Homepage() {
                       </div>
 
                       <div className="product-actions">
-                        <h2>{product.price} Rs/</h2>
+                        <h2>{product.price} Fee/</h2>
                         <div className="d-flex">
                           <button
                             className="mx-2 btn1"
                             onClick={() => addtocart(product)}
                           >
-                            Add To Cart
+                            add to profile
                           </button>
                           <button
                             onClick={() => {

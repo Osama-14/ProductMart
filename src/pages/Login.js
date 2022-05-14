@@ -30,6 +30,21 @@ function Login() {
 
   return (
     <div className="login-parent">
+      <div
+        style={{ display: "flex", justifyContent: "center", marginTop: "20" }}
+      >
+        <span>Welcome To !</span>{" "}
+        <h2
+          style={{
+            position: "absolute",
+            marginTop: "20px",
+            fontWeight: "bold",
+            textAlign: "center",
+          }}
+        >
+          Saylani Mass IT Training
+        </h2>
+      </div>
       {loader && <Loader />}
       <div className="row justify-content-center">
         <div className="col-md-4 z1">
